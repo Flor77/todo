@@ -1,8 +1,6 @@
 import React from "react";
 import Card from "./components/card/Card";
-import Input from "./components/input/Input";
 import TodoItem from "./components/todo-item/TodoItem";
-import TextArea from "./components/input/TextArea";
 import Button from "./components/button/Button";
 import AddTodoForm from "./components/form/AddTodoForm";
 import Modal from "./components/modal/Modal";
@@ -63,11 +61,11 @@ function App() {
     );
   };
 
-  const editTodo = (newEditCard) => {
+  const editTodo = (taskTitle, taskDescription, matchId) => {
     setTodos((prevState) =>
       prevState.map((item) => {
-        if (item.id === newEditCard.id) {
-          return newEditCard;
+        if (item.id === matchId) {
+          return { ...item, title: taskTitle, description: taskDescription };
         }
         return item;
       })
@@ -96,45 +94,25 @@ function App() {
           <h1>My todos</h1>
           <Button onClick={openModal}>Add +</Button>
           <div className="list-container">
-            {todos
-              .filter((item) => item.completed === false)
-              .map((item, index) => (
-                <TodoItem
-                  openModal={openModal}
-                  removeTodo={removeTodo}
-                  completeTodo={completeTodo}
-                  key={index}
-                  id={item.id}
-                  title={item.title}
-                  description={item.description}
-                  completed={item.completed}
-                  editTodo={editTodo}
-                  onEdit={onEdit}
-                />
-              ))}
+            {todos.map((item, index) => (
+              <TodoItem
+                openModal={openModal}
+                removeTodo={removeTodo}
+                completeTodo={completeTodo}
+                key={index}
+                id={item.id}
+                title={item.title}
+                description={item.description}
+                completed={item.completed}
+                editTodo={editTodo}
+                onEdit={onEdit}
+              />
+            ))}
           </div>
 
           <div className="separator"></div>
 
-          <h2>Completed</h2>
-          <div className="list-container">
-            {todos
-              .filter((item) => item.completed === true)
-              .map((item, index) => (
-                <TodoItem
-                  openModal={openModal}
-                  removeTodo={removeTodo}
-                  completeTodo={completeTodo}
-                  key={index}
-                  id={item.id}
-                  title={item.title}
-                  description={item.description}
-                  completed={item.completed}
-                  editTodo={editTodo}
-                  onEdit={onEdit}
-                />
-              ))}
-          </div>
+          <p>{`You have ${todos.length} todos`}</p>
         </Card>
       </div>
       <Modal onClose={closeModal} isOpen={isOpen}>

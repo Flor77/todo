@@ -47,3 +47,8 @@
 h1 {
   margin: 20px 0;
 }
+
+p {
+  font-size: 1rem;
+  color: #555;
+}
