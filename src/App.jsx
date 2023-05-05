@@ -103,7 +103,7 @@ function App() {
                 id={item.id}
                 title={item.title}
                 description={item.description}
-                completed={item.completed}
+                completed={!!item.completed}
                 editTodo={editTodo}
                 onEdit={onEdit}
               />
