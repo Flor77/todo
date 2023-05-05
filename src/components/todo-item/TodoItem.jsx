@@ -1,31 +1,25 @@
-import React, { useState } from "react";
+import React from "react";
 import "./TodoItem.css";
 import Checkbox from "../checkbox/CheckBox";
 
 const TodoItem = (props) => {
   const handleCheckboxChange = () => {
-    const matchId = props.id;
-    props.completeTodo(matchId);
+    props.completeTodo(props.id);
   };
 
   const handleDeleteChange = () => {
-    const matchId = props.id;
-    props.removeTodo(matchId);
+    props.removeTodo(props.id);
   };
 
   const handleEditId = () => {
-    const matchId = props.id;
-    props.onEdit(matchId);
+    props.onEdit(props.id);
   };
 
   return (
     <div className={`todo-item ${props.completed && "todo-completed"}`}>
       <div className="todo-item-header">
         <div className="title-area">
-          <Checkbox
-            checked={!!props.completed}
-            onChange={handleCheckboxChange}
-          />
+          <Checkbox checked={props.completed} onChange={handleCheckboxChange} />
 
           <h4>{props.title}</h4>
         </div>

@@ -112,7 +112,9 @@ function App() {
 
           <div className="separator"></div>
 
-          <p>{`You have ${todos.length} todos`}</p>
+          <p>{`You have ${
+            todos.filter((item) => item.completed === false).length
+          } todos`}</p>
         </Card>
       </div>
       <Modal onClose={closeModal} isOpen={isOpen}>
