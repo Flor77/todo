@@ -24,7 +24,7 @@ const Checkbox = (props) => {
         type="checkbox"
       />
       <label
-        className={`checkbox ${props.checked && "checkbox--active"}`}
+        className={`checkbox ${!!checked && "checkbox--active"}`}
         htmlFor="checkbox"
       ></label>
     </div>
